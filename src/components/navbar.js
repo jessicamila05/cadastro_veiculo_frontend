@@ -18,7 +18,7 @@ function Navbar(props){
                         <NavbarItem render={props.isUserAutenticate} href="/listar_veiculos" label="Veículos" />
                         <NavbarItem render={props.isUserAutenticate} href="/cadastrar_veiculo" label="Cadastrar Veículo" />
                         <NavbarItem render={props.isUserAutenticate} href="/cadastrar_usuario" label="Cadastrar Usuario" />
-                        <NavbarItem render={props.isUserAutenticate} onClick={props.logOut} href="/login" label="Sair" />
+                        <NavbarItem render={props.isUserAutenticate} onClick={props.logOut} href="/" label="Sair" />
              
                     </ul>
   

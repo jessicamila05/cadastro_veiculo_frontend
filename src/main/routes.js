@@ -20,7 +20,7 @@ function RouteAuthenticated({component: Component, isUserAuthenticate, ...props}
                 )
             }else{
                 return(
-                    <Redirect to={ {pathname: '#/login', state : {from: componentProps.location}}} />
+                    <Redirect to={ {pathname: '/', state : {from: componentProps.location}}} />
                 )
             }
         }} />
@@ -32,7 +32,7 @@ function Routes (props) {
     return(
         <HashRouter>     
             <Switch> 
-            <Route path="/login" component={Login} />
+            <Route exact path="/" component={Login} />
                 <Route path="/cadastrar_usuario" component={UserRegistration} />   
                 <RouteAuthenticated isUserAuthenticate={props.isUserAuthenticate} path="/listar_veiculos" component={ListVehicles} />
                 <RouteAuthenticated isUserAuthenticate={props.isUserAuthenticate} path="/cadastrar_veiculo/:id?" component={VehicleRegistration} />       

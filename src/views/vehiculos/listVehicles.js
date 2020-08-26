@@ -9,6 +9,7 @@ import VehicleService from '../../app/service/vehicleService'
 import {AuthContext} from '../../main/authenticationProvider'
 import * as messages from '../../components/toastr'
 
+
 import {Dialog} from 'primereact/dialog'
 import {Button} from 'primereact/button'
 
@@ -27,12 +28,13 @@ class ListVehicles extends React.Component{
         this.service = new VehicleService();
     }
     
+    
     take = () => {
-        const userAtenticate = this.context.userAtenticate
         const vehicleFilter = {
             purchaseDate: this.state.purchaseDate,
             situation: this.state.situation,
-            user: userAtenticate.id
+            user: this.context.userAtenticate
+            
 
         }
             
@@ -64,11 +66,11 @@ class ListVehicles extends React.Component{
 
     }
     
-    delete = (vehicle) => {
+    delete = () => {
         this.service
             .delete(this.vehicleDelete.id)
             .then(response => {
-                const vehicles = this.state.vehicleDelete.id;
+                const vehicles = this.state.vehicles;
                 const index = vehicles.indexOf(this.vehicleDelete);
                 vehicles.splice(index, 1);
                 this.setState({vehicles: vehicles, showConfirmDialog: false})
@@ -76,6 +78,7 @@ class ListVehicles extends React.Component{
             }).catch(error =>{
                     messages.messageError('Erro, não foi possível deletar veiculo!')
             })
+    
     }
 
 

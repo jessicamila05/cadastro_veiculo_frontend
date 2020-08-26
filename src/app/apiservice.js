@@ -1,11 +1,24 @@
 import axios from 'axios'
 
+import { AuthContext } from '../main/authenticationProvider';
 
-
-const httpClient = axios.create({
+export const httpClient = axios.create({
     baseURL: 'http://localhost:3000'
 
 })
+
+
+/*httpClient.interceptors.request.use(function (config){
+    const token  = this.context.isAuthenticate
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+});*/
+
+
+
+
   
 class ApiService{
 
@@ -37,5 +50,7 @@ class ApiService{
 
     
 }
+
+ApiService.contextType = AuthContext
 
 export default ApiService;

@@ -12,6 +12,10 @@ class UserService extends ApiService{
     authenticate(credentials){
         return this.post('/authenticate', credentials)
     }
+    
+    getId(id){
+        return this.get(`/${id}/`)
+    }
 
     save(user){
         return this.post('/register', user)
@@ -30,10 +34,10 @@ class UserService extends ApiService{
             error.push('Enforme um Email valido.')
         }
 
-        if(!user.password || !this.state.confirmPassword){
+        if(!user.password || !user.confirmPassword){
             error.push('Confirme a senha.')
 
-        }else if(user.password !== this.state.confirmPassword){
+        }else if(user.password !== user.confirmPassword){
             error.push('Senhas diferentes.')
 
         }

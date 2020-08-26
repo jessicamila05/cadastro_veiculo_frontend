@@ -20,7 +20,7 @@ class UserRegistration extends React.Component{
 
     constructor(){
         super();
-        this.service = new UserService()
+        this.service = new UserService();
     }
 
 
@@ -41,16 +41,17 @@ class UserRegistration extends React.Component{
         this.service.save(user)
         .then(response => {
             messageSuccess('Usuário cadastrado com sucesso!')
-            this.props.history.push('/login')
-        }).catch(error =>{
-            messageError('Não foi possível cadastrar o usuário')
+            this.props.history.push('/')
+        }).catch(error => {
+            messageError(error.response.data)
         })
+            
         
     }
 
 
     cancel = () => {
-        this.props.history.push('/login')
+        this.props.history.push('/')
     }
 
 
@@ -101,7 +102,7 @@ class UserRegistration extends React.Component{
                                 onChange={e => this.setState({confirmPassword: e.target.value})}/>
                             </FormGroup>
 
-                            <button onClick={this.register} 
+                            <button onClick={this.validateRegistration} 
                                 type="button" 
                                 className="btn btn-success">
                                 <i className="pi pi-save"></i> Salvar

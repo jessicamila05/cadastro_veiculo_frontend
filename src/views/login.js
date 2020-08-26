@@ -25,12 +25,11 @@ class Login extends React.Component{
     login = () => {
         this.service.authenticate({
             userName: this.state.userName,
-            password: this.state.password,
-           
+            password: this.state.password
 
         }).then(response =>{
             this.context.startSession(response.data)
-            this.props.history.push('#/listar_veiculos')
+            this.props.history.push('/listar_veiculos')
         }).catch(error => {
             messageError(error.response.data)
         })

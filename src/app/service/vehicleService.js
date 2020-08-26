@@ -72,7 +72,7 @@ export default class VehicleService extends ApiService{
 
     }
 
-    //Salvando caastro do veiculos...
+    //Salvando cadastro do veiculos...
     save(vehicle){
         return this.post('/vehicles', vehicle)
     }
@@ -96,8 +96,8 @@ export default class VehicleService extends ApiService{
         return this.get(params);
     }
 
-    /*delete(id){
-        return this.delete('/${id}')
-    }*/
+    delete(id){
+        return this.delete(`/${id}`)
+    }
 
 }
