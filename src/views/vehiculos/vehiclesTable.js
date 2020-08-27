@@ -3,7 +3,7 @@ import currencyFormatter from 'currency-formatter'
 
 export default props  => {
 
-    const rows = props.vehicles && props.vehicles.map(vehicle => { 
+    const rows = props.vehicles.map(vehicle => { 
         return (
 
                 <tr key={vehicle.id}> 
@@ -38,6 +38,7 @@ export default props  => {
         <table className="table table-houver"> 
             <thead>
                 <tr>
+                <th scope="col">Id Do Veículo</th>
                     <th scope="col">Modelo do Veículo</th>
                     <th scope="col">Placa</th>
                     <th scope="col">Fabricante</th>

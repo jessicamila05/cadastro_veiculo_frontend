@@ -12,7 +12,7 @@ class Login extends React.Component{
 
     state = {
         userName: '',
-        password: '',
+        password: ''
        
     }
 

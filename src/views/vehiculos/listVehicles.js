@@ -30,12 +30,11 @@ class ListVehicles extends React.Component{
     
     
     take = () => {
+        const userLogin = this.context.userAtenticate
         const vehicleFilter = {
             purchaseDate: this.state.purchaseDate,
             situation: this.state.situation,
-            user: this.context.userAtenticate
-            
-
+            user: userLogin
         }
             
         this.service
@@ -47,10 +46,12 @@ class ListVehicles extends React.Component{
                 }
                 this.setState({vehicles: response.data})
         }).catch(error => {
-            console.log(error)
+            messages.messageError('Erro, não foi possível cadastrar veiculo!')
         })
     }
-
+    registerVehicle = () => {
+        this.props.history.push('/cadastrar_veiculo')
+    }
     edit = (id) => {
         this.props.history.push(`/cadastrar_veiculo/${id}`)
     }
@@ -76,7 +77,7 @@ class ListVehicles extends React.Component{
                 this.setState({vehicles: vehicles, showConfirmDialog: false})
                     messages.messageSuccess('Veículo deletado com suscesso!')
             }).catch(error =>{
-                    messages.messageError('Erro, não foi possível deletar veiculo!')
+                    messages.messageError('Erro, não foi possível listar veiculo!')
             })
     
     }
@@ -125,7 +126,7 @@ class ListVehicles extends React.Component{
                                                 className="btn btn-success">
                                                 <i className="pi pi-search"></i> Buscar
                                             </button>
-                                            <button  onClick={this.delete} 
+                                            <button  onClick={this.registerVehicle} 
                                                 type="button" 
                                                 className="btn btn-danger">
                                                 <i className="pi pi-plus"></i> Cadastrar
@@ -139,7 +140,7 @@ class ListVehicles extends React.Component{
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="bs-component">
-                                        <VehiclesTable vehicle={this.state.vehicles}
+                                        <VehiclesTable vehicles = {this.state.vehicles}
                                                         deleteAction={this.confirmDelete}
                                                         editAction={this.edit}/>
                                     </div>

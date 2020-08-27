@@ -7,7 +7,7 @@ import SelectMenu from '../../components/selectMenu'
 import {withRouter} from 'react-router-dom'
 import * as messages from '../../components/toastr'
 
-
+import {AuthContext} from '../../main/authenticationProvider'
 import VehicleService from '../../app/service/vehicleService'
 
 class VehicleRegistration extends React.Component{
@@ -32,7 +32,7 @@ class VehicleRegistration extends React.Component{
     }
 
 
-    componentDidMount(){
+    /*componentDidMount(){
         const params = this.props.match.params
         if(params.id){
             this.service
@@ -47,10 +47,12 @@ class VehicleRegistration extends React.Component{
         }
 
 
-    }
+    }*/
 
 
     submit = () => {
+        const userLogin = this.context.userAtenticate 
+
         const{modelVehicle ,
                 licensePlate,
                 manufacturer,
@@ -67,7 +69,8 @@ class VehicleRegistration extends React.Component{
                         saleValue,
                         purchaseDate,
                         saleDate ,   
-                        situation}
+                        situation,
+                        user: userLogin}
         
         this.service
             .save(vehicle)
@@ -245,6 +248,8 @@ class VehicleRegistration extends React.Component{
     }
 
 }
+
+VehicleRegistration.contextType = AuthContext;
 
 
 export default withRouter(VehicleRegistration)

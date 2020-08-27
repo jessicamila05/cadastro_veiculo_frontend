@@ -12,7 +12,7 @@ export default class VehicleService extends ApiService{
         return [
             {label: 'Selecione...', value: ''},
             {label: 'Em uso', value: 'EMUSO'},
-            {label: 'Manutenção', value: 'MANUTÂO'},
+            {label: 'Manutenção', value: 'MANUTENCAO'},
             {label: 'Vendido', value: 'VENDIDO'},
 
         ]
@@ -74,7 +74,7 @@ export default class VehicleService extends ApiService{
 
     //Salvando cadastro do veiculos...
     save(vehicle){
-        return this.post('/vehicles', vehicle)
+        return this.post('/', vehicle)
     }
     //Atualizando caastro do veiculo...
     updated(vehicle){
@@ -85,6 +85,7 @@ export default class VehicleService extends ApiService{
 
         let params = `?purchaseDate=${VehicleFilter.purchaseDate}`
         
+
         if(VehicleFilter.situation){
             params = `${params}&situation=${VehicleFilter.situation}`
         }
